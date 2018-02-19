@@ -12,16 +12,20 @@ function startMenu(menuName, channel, member) {
 }
 
 function showMenu(menu, channel, member) {
-    msg = parseMember(menu.data[0].questions[0].q.statement, member);
+    msg = parseStatement(menu.data[0].questions[0].q.statement, member);
     channel.send(msg);
 }
 
-function parseMember(text, member) {
+function parseStatement(text, member) {
     var parts = text.split("@member");
     var parsedText = parts[0];
     for (var i = 1; i < parts.length; i++) {
         parsedText = parsedText + member + parts[i];
     }
+
+    parts = text.split(":(\w):");
+    console.log(parts);
+
 
     return parsedText
 }
