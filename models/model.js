@@ -16,6 +16,7 @@ Menu.prototype.findByName = function (name, callback) {
             callback(null, new Menu(result));
             db.close();
         });
+    }
 };
 
 module.exports = Menu;
