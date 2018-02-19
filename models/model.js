@@ -6,7 +6,7 @@ var Menu = function (data) {
 
 Menu.prototype.data = {};
 
-Menu.prototype.findByName = function (name, callback) {
+Menu.findByName = function (name, callback) {
     MongoClient.connect(process.env.DB_URL, function(err, db) {
         if (err) throw err;
         var dbo = db.db("felixdbguo");
