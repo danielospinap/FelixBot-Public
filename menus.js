@@ -37,6 +37,7 @@ function parseEmoji(text, member) {
     var emojis = member.guild.emojis;
     var parts = text.split(/:\w+:/);
     var parsedText = parts[0];
+    console.log(parts);
 
     for (var i = 1; i < parts.length; i++) {
         var i = text.search(/:\w+:/);
