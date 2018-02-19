@@ -50,7 +50,7 @@ function parseEmoji(text, member) {
             emoji = ":" + textEmoji + ":";
         }
 
-        parsedText = parsedText + emoji + parts[j];
+        parsedText = parsedText + emoji + parts[i];
     }
 
     console.log(parsedText);
