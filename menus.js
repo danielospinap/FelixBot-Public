@@ -12,7 +12,7 @@ function startMenu(menuName, channel, member) {
 }
 
 function showMenu(menu, channel, member) {
-    statement = parseMember(menu.data[0].questions[0].q.statement, member);
+    statement = parseStatement(menu.data[0].questions[0].q.statement, member);
     channel.send(statement);
 }
 
