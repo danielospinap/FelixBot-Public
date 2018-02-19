@@ -12,8 +12,14 @@ function startMenu(menuName, channel, member) {
 }
 
 function showMenu(menu, channel, member) {
-    statement = parseStatement(menu.data[0].questions[0].q.statement, member);
-    channel.send(statement);
+    questions = menu.data[0].questions;
+    for (var i = 0; i < questions.length; i++) {
+        statement = parseStatement(questions[0].q.statement, member);
+        channel.send(statement).then(msg => {
+            addReactions(member, msg, questions[i].q.reactions, 0);
+        });
+    }
+
 }
 
 function parseStatement(text, member) {
@@ -59,5 +65,16 @@ function parseEmoji(text, member) {
     console.log(parsedText);
     return parsedText;
 }
+
+function addReactions(member, msg, reactions, i) {
+    if (i < reactions.length) {
+        var emojiName = reactions[i].opt.emoji;
+        msg.react(member.guild.emojis.find('name', emojiName)).then(reaction =>{
+            addReactions(member, msg, reactions, i+1);
+        });
+    }
+}
+
+
 
 module.exports = startMenu;
