@@ -23,7 +23,7 @@ function parseStatement(text, member) {
         parsedText = parsedText + member + parts[i];
     }
 
-    parts = text.split(":(\w+):");
+    parts = text.split(/:\w+:/);
     console.log(parts);
 
 
