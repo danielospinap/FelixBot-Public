@@ -37,7 +37,7 @@ function parseEmoji(text, member) {
     var parts = text.split(/:\w+:/);
     var parsedText = parts[0];
 
-    for (var i = 1; i < array.length; i++) {
+    for (var i = 1; i < parts.length; i++) {
         var i = text.search(/:\w+:/);
         var f = text.substring(i+1).search(":");
 
