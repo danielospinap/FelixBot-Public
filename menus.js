@@ -19,6 +19,7 @@ function showMenu(menu, channel, member) {
 function parseStatement(text, member) {
     statement = parseMember(text, member);
     statement = parseEmoji(statement, member);
+    return statement;
 }
 
 function parseMember(text, member) {
