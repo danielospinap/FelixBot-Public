@@ -22,6 +22,11 @@ client.on('guildMemberAdd', member =>{
 });
 */
 client.on('message', msg => {
+    //TODO Quitar if al parsar a producción:
+    if (msg.member.id === "415197858195832832") {
+        return;
+    }
+    
     menus("inicio", msg.channel, msg.member);
 });
 
