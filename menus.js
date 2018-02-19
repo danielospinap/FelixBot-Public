@@ -6,13 +6,13 @@ function startMenu(menuName, channel, member) {
             console.log("Menu not found.");
             return;
         }
-        console.log(menu.data[0].questions[0].q.statement);
-        //showMenu(menu, channel, member);
+        //console.log(menu.data[0].questions[0].q.statement);
+        channel.send(showMenu(menu, channel, member));
     });
 }
 
 function showMenu(menu, channel, member) {
-    msg = parseMember(menu.q[0].statement, member);
+    msg = parseMember(menu.data[0].questions[0].q.statement, member);
 }
 
 function parseMember(text, member) {
