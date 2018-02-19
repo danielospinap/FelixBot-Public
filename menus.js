@@ -53,7 +53,7 @@ function parseEmoji(text, member) {
 
         parsedText = parsedText + emoji + parts[i];
 
-        text = text.substring(f+1);
+        text = text.substring(f+i+1);
     }
 
     console.log(parsedText);
