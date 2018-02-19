@@ -40,17 +40,17 @@ function parseEmoji(text, member) {
     console.log(parts);
 
     for (var i = 1; i < parts.length; i++) {
-        var i = text.search(/:\w+:/);
-        var f = text.substring(i+1).search(":");
-        var textEmoji = text.substring(i+1, f+i+1);
+        var s = text.search(/:\w+:/);
+        var f = text.substring(s+1).search(":");
+        var textEmoji = text.substring(s+1, f+s+1);
 
-        var emoji = emojis.find('name', text.substring(i+1, f+i+1));
+        var emoji = emojis.find('name', text.substring(s+1, f+s+1));
         if (emoji == null) {
             console.log("Emoji not found.");
             emoji = ":" + textEmoji + ":";
         }
 
-        parsedText = parsedText + emoji + parts[i];
+        parsedText = parsedText + emoji + parts[j];
     }
 
     console.log(parsedText);
