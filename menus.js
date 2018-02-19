@@ -39,7 +39,7 @@ function parseEmoji(text, member) {
     var parsedText = parts[0];
     console.log(parts);
 
-    for (var i = 1; i < parts.length; i++) {
+    for (var i = 1; i < parts.length && i > 0; i++) {
         var s = text.search(/:\w+:/);
         var f = text.substring(s+1).search(":");
         var textEmoji = text.substring(s+1, f+s+1);
@@ -51,6 +51,8 @@ function parseEmoji(text, member) {
         }
 
         parsedText = parsedText + emoji + parts[i];
+
+        text = text.substring(f+1);
     }
 
     console.log(parsedText);
