@@ -19,7 +19,7 @@ function showMenu(menu, channel, member) {
 function parseMember(text, member) {
     var parts = text.split("@member");
     var parsedText = parts[0];
-    for (var i = 0; i < parts.length; i++) {
+    for (var i = 1; i < parts.length; i++) {
         parsedText = parsedText + member + parts[i];
     }
 
