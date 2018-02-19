@@ -7,12 +7,13 @@ function startMenu(menuName, channel, member) {
             return;
         }
         //console.log(menu.data[0].questions[0].q.statement);
-        channel.send(showMenu(menu, channel, member));
+        showMenu(menu, channel, member);
     });
 }
 
 function showMenu(menu, channel, member) {
     msg = parseMember(menu.data[0].questions[0].q.statement, member);
+    channel.send(msg);
 }
 
 function parseMember(text, member) {
