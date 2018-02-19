@@ -23,8 +23,13 @@ function parseStatement(text, member) {
         parsedText = parsedText + member + parts[i];
     }
 
+<<<<<<< HEAD
     parsedText = parsedText.split(/:\w+:/);
     console.log(parsedText);
+=======
+    parts = parsedText.split(/:\w+:/);
+    console.log(parts);
+>>>>>>> 62b8951133734651d791e2397cb912369cef9e50
 
 
     return parsedText
