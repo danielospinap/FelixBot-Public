@@ -6,7 +6,7 @@ function startMenu(menuName, channel, member) {
             console.log("Menu not found.");
             return;
         }
-        console.log(menu.questions[0].q.statement);
+        console.log(menu.data[0].questions[0].q.statement);
         //showMenu(menu, channel, member);
     });
 }
