@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const iniciacion = require('./iniciacion.js');
+const menus = require('./menus.js');
 var MongoClient = require('mongodb').MongoClient;
 
 const url = process.env.DB_URL;
@@ -19,11 +20,11 @@ MongoClient.connect(url, function(err, db) {
 client.on('guildMemberAdd', member =>{
     iniciacion(member, stringsInicio);
 });
-/*
+
 client.on('message', msg => {
-    messagefunc(msg);
+    menus("inicio", msg.channel, msg.member);
 });
-*/
+
 /*
 client.on('message', msg => {
     const member = msg.member;
