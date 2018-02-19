@@ -22,7 +22,7 @@ client.on('guildMemberAdd', member =>{
 });
 */
 client.on('message', msg => {
-    menus("s", msg.channel, msg.member);
+    menus("inicio", msg.channel, msg.member);
 });
 
 /*
