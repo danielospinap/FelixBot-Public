@@ -6,8 +6,23 @@ function startMenu(menuName, channel, member) {
             console.log("Menu not found.");
             return;
         }
-        console.log(menu.data[0]);
+        console.log(menu.q[0].statement);
+        //showMenu(menu, channel, member);
     });
+}
+
+function showMenu(menu, channel, member) {
+    msg = parseMember(menu.q[0].statement, member);
+}
+
+function parseMember(text, member) {
+    var parts = text.split("@member");
+    var parsedText = parts[0];
+    for (var i = 0; i < parts.length; i++) {
+        parsedText = parsedText + member + parts[i];
+    }
+
+    return parsedText
 }
 
 module.exports = startMenu;
