@@ -25,8 +25,10 @@ client.on('message', msg => {
     //TODO Quitar if al parsar a producción:
     
     const member = msg.member;
-    if (member.displayName  === 'Felix-Desarrollo') {
-        menus("inicio", msg.channel, msg.member);
+    if (member.displayName  == "Felix-Desarrollo"){
+        console.log("entra");
+        
+        //menus("inicio", msg.channel, msg.member);
     }
     
 });
