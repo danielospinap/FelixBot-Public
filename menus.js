@@ -14,12 +14,12 @@ var startMenu = function(menuName, channel, member, callback) {
 
 function showMenu(menu, channel, member) {
     questions = menu.data[0].questions;
-    for (var i = 0; i < questions.length; i++) {
+    //for (var i = 0; i < questions.length; i++) {
         statement = parseStatement(questions[0].q.statement, member);
         channel.send(statement).then(msg => {
             //addReactions(member, msg, questions[i].q.reactions, 0);
         });
-    }
+    //}
 
 }
 
