@@ -1,6 +1,6 @@
 Menu = require("./models/model.js");
 
-function startMenu(menuName, channel, member) {
+var startMenu = function(menuName, channel, member, callback) {
     Menu.findByName(menuName, function(err, menu) {
         if (menu.data.length == 0) {
             console.log("Menu not found.");
@@ -8,6 +8,7 @@ function startMenu(menuName, channel, member) {
         }
         //console.log(menu.data[0].questions[0].q.statement);
         showMenu(menu, channel, member);
+        callback("Menu started.");
     });
 }
 
