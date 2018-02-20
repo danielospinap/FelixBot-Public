@@ -27,10 +27,7 @@ client.on('message', msg => {
     if (msg.content === 'a') {
         console.log("entra");
         
-        menus("inicio", channel, msg.member, function(str) {
-            console.log(str);
-            
-        });
+        menus("inicio", channel, msg.member);
     }
 });
 

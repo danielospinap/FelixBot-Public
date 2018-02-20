@@ -1,7 +1,6 @@
 Menu = require("./models/model.js");
 
-var startMenu = function(menuName, channel, member, callback) {
-    callback("Menu started.");
+function startMenu(menuName, channel, member) {
     Menu.findByName(menuName, function(err, menu) {
         if (menu.data.length == 0) {
             console.log("Menu not found.");
@@ -11,7 +10,7 @@ var startMenu = function(menuName, channel, member, callback) {
         showMenu(menu, channel, member);
     });
 }
-
+//TODO: volver recursivo
 function showMenu(menu, channel, member) {
     questions = menu.data[0].questions;
     //for (var i = 0; i < questions.length; i++) {
