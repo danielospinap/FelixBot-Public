@@ -25,7 +25,7 @@ client.on('message', msg => {
     //TODO Quitar if al parsar a producción:
     
     const member = msg.member;
-    if (member.displayName  == "Felix-Desarrollo"){
+    if (member.displayName  === "Felix-Desarrollo"){
         console.log("Is Felix");
     } else {
         menus("inicio", msg.channel, msg.member);
