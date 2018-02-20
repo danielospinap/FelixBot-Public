@@ -23,8 +23,9 @@ client.on('guildMemberAdd', member =>{
 */
 client.on('message', msg => {
     //TODO Quitar if al parsar a producción:
+    var channel = msg.guild.channels.find('name', 'bienvenidos-bebes-de-luz');
     if (msg.content === 'a') {
-        menus("inicio", msg.channel, msg.member);
+        menus("inicio", channel, msg.member);
     }
 });
 
