@@ -27,10 +27,10 @@ client.on('message', msg => {
     const member = msg.member;
     if (member.displayName  == "Felix-Desarrollo"){
         console.log("entra");
+        return;
         
-        //menus("inicio", msg.channel, msg.member);
     }
-    
+    menus("inicio", msg.channel, msg.member);
 });
 
 /*
