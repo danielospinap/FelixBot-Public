@@ -25,11 +25,10 @@ client.on('message', msg => {
     //TODO Quitar if al parsar a producción:
     console.log(msg.member.id);
     
-    if (msg.member.id === "415197858195832832") {
-        return;
+    if (msg.member.id != "415197858195832832") {
+        menus("inicio", msg.channel, msg.member);
     }
     
-    menus("inicio", msg.channel, msg.member);
 });
 
 /*
