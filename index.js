@@ -23,6 +23,8 @@ client.on('guildMemberAdd', member =>{
 */
 client.on('message', msg => {
     //TODO Quitar if al parsar a producción:
+    console.log(msg.member.id);
+    
     if (msg.member.id === "415197858195832832") {
         return;
     }
