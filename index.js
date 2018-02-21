@@ -18,7 +18,7 @@ MongoClient.connect(url, function(err, db) {
 
 */
 client.on('guildMemberAdd', member =>{
-    menus("inicio", channel, msg.member);
+    menus("inicio", member.channel, member);
 });
 /**/
 client.on('message', msg => {/*
