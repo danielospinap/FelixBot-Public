@@ -88,10 +88,16 @@ function addReactions(member, msg, reactions, ri) {
     if (ri < reactions.length) {
         console.log("agrega reaccion");
         var emojiName = reactions[ri].opt.emoji;
-        console.log(member.guild.emojis.find('name', emojiName));
-        msg.react(member.guild.emojis.find('name', emojiName)).then(reaction =>{
-            addReactions(member, msg, reactions, ri+1);
-        });
+        var emoji = member.guild.emojis.find('name', emojiName);
+        if (emoji == null) {
+            msg.react(emojiName).then(reaction =>{
+                addReactions(member, msg, reactions, ri+1);
+            });
+        } else {
+            msg.react(member.guild.emojis.find('name', emojiName)).then(reaction =>{
+                addReactions(member, msg, reactions, ri+1);
+            });
+        }
     } else {
         identifyReaction(member, msg, emojiName => {
             runAction(member, msg, reactions, emojiName);
