@@ -20,6 +20,7 @@ function showQuestion(questons, channel, member, i) {
 
 //TODO: volver recursivo
 function showMenu(menu, channel, member) {
+    console.log(menu);
     questions = menu.data[0].questions;
     //for (var i = 0; i < questions.length; i++) {
         statement = parseStatement(questions[0].q.statement, member);
