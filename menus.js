@@ -76,6 +76,7 @@ function parseEmoji(text, member) {
 }
 
 function addReactions(member, msg, reactions, i) {
+    console.log("agrega reaccion");
     if (i < reactions.length) {
         var emojiName = reactions[i].opt.emoji;
         msg.react(member.guild.emojis.find('name', emojiName)).then(reaction =>{
