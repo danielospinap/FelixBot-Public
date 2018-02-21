@@ -7,7 +7,7 @@ function startMenu(menuName, channel, member) {
             return;
         }
         //console.log(menu.data[0].questions[0].q.statement);
-        showMenu(menu.data[0].questions, channel, member);
+        showQuestion(menu.data[0].questions, channel, member);
     });
 }
 
