@@ -11,7 +11,7 @@ function startMenu(menuName, channel, member) {
     });
 }
 
-function showQuestion(questons, channel, member, i) {
+function showQuestion(questions, channel, member, i) {
     statement = parseStatement(questions[0].q.statement, member);
     channel.send(statement).then(msg => {
         addReactions(member, msg, questions[0].q.reactions);
