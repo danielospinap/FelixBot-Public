@@ -133,6 +133,8 @@ function runAction(member, msg, reactions, emojiName) {
 
     if (action.type === "addRole") {
         addRole(member, action.params);
+    } else if (action.type === "addAndRemoveRole") {
+        addAndRemoveRole(member, action.params)
     }
 }
 
@@ -140,6 +142,11 @@ function addRole(member, names) {
     for (var i = 0; i < names.length; i++) {
         member.addRole(member.guild.roles.find('name', names[i]));
     }
+}
+
+function addAndRemoveRole(member, names) {
+    member.addRole(member.guild.roles.find('name', names[0]));
+    member.removeRole(member.guild.roles.find('name', names[1]));
 }
 
 
