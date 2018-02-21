@@ -16,19 +16,19 @@ MongoClient.connect(url, function(err, db) {
     });
 });
 
-
-client.on('guildMemberAdd', member =>{
-    iniciacion(member, stringsInicio);
-});
 */
-client.on('message', msg => {
+client.on('guildMemberAdd', member =>{
+    menus("inicio", channel, msg.member);
+});
+/**/
+client.on('message', msg => {/*
     //TODO Quitar if al parsar a producción:
     var channel = msg.guild.channels.find('name', 'bienvenidos-bebes-de-luz');
     if (msg.content === 'a') {
         console.log("entra");
-        
+
         menus("inicio", channel, msg.member);
-    }
+    }*/
 });
 
 /*
