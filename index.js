@@ -18,7 +18,7 @@ MongoClient.connect(url, function(err, db) {
 
 */
 client.on('guildMemberAdd', member =>{
-    menus("inicio", member.channel, member);
+    menus("inicio", member.guild.channels.find('name', 'bienvenidos-bebes-de-luz'), member);
 });
 /**/
 client.on('message', msg => {/*
