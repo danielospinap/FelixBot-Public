@@ -1,5 +1,8 @@
 Menu = require("./models/model.js");
 
+var questions;
+var qi;
+
 function startMenu(menuName, channel, member) {
     Menu.findByName(menuName, function(err, menu) {
         if (menu.data.length == 0) {
@@ -7,17 +10,23 @@ function startMenu(menuName, channel, member) {
             return;
         }
         //console.log(menu.data[0].questions[0].q.statement);
-        showQuestion(menu.data[0].questions, channel, member);
+        questions = menu.data[0].questions;
+        qi = 0;
+        showQuestion(channel, member);
     });
 }
 
-function showQuestion(questions, channel, member, i) {
-    statement = parseStatement(questions[0].q.statement, member);
-    channel.send(statement).then(msg => {
-        addReactions(member, msg, questions[0].q.reactions);
-    });
+function showQuestion(channel, member) {
+    if (qi < questions.length) {
+        statement = parseStatement(questions[qi].q.statement, member);
+        statement = statement + member.guild.roles.find('name', 'edita roles');
+        console.log(statement);
+        channel.send(statement).then(msg => {
+            addReactions(member, msg, questions[qi].q.reactions, 0);
+        });
+    }
 }
-
+/*
 //TODO: volver recursivo
 function showMenu(menu, channel, member) {
     console.log(menu);
@@ -29,7 +38,7 @@ function showMenu(menu, channel, member) {
         });
     //}
 
-}
+}*/
 
 function parseStatement(text, member) {
     statement = parseMember(text, member);
@@ -75,20 +84,24 @@ function parseEmoji(text, member) {
     return parsedText;
 }
 
-function addReactions(member, msg, reactions, i) {
-    console.log("agrega reaccion");
-    if (i < reactions.length) {
-        var emojiName = reactions[i].opt.emoji;
+function addReactions(member, msg, reactions, ri) {
+    if (ri < reactions.length) {
+        console.log("agrega reaccion");
+        var emojiName = reactions[ri].opt.emoji;
         msg.react(member.guild.emojis.find('name', emojiName)).then(reaction =>{
-            addReactions(member, msg, reactions, i+1);
+            addReactions(member, msg, reactions, ri+1);
         });
     } else {
-        //identifyReaction(member, msg);
+        identifyReaction(member, msg, emojiName => {
+            runAction(member, msg, reactions, emojiName);
+            qi++;
+            showQuestion(msg.channel, member);
+        });
     }
 }
 
 //TODO: generalizar para cualquier reaccion
-function identifyReaction(member, msg){
+function identifyReaction(member, msg, callback){
     console.log("Waiting for reactions");
     const filter =(reaction) => reaction.emoji.name === "yes" || reaction.emoji.name === "no";
     const collector = msg.createReactionCollector(filter, { time: 30000 });
@@ -100,13 +113,34 @@ function identifyReaction(member, msg){
                 console.log(user.username + ' reacted with emoji ' + reaction.emoji.name);
                 collector.stop();
 
-                msg.delete();
-                asignaRol(member, reaction.emoji.name);
+                callback(reaction.emoji.name);
             }
         });
     });
+
+    collector.on('end', r => {
+        msg.delete();
+    })
 }
 
+function runAction(member, msg, reactions, emojiName) {
+    var action;
+    var i = 0;
+    while (reactions[i].opt.emoji != emojiName) {
+        i++;
+    }
+    action = reactions[i].opt.action;
+
+    if (action.type === "addRole") {
+        addRole(member, action.params);
+    }
+}
+
+function addRole(member, names) {
+    for (var i = 0; i < names.length; i++) {
+        member.addRole(member.guild.roles.find('name', names[i]));
+    }
+}
 
 
 module.exports = startMenu;
