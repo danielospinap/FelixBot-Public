@@ -7,9 +7,17 @@ function startMenu(menuName, channel, member) {
             return;
         }
         //console.log(menu.data[0].questions[0].q.statement);
-        showMenu(menu, channel, member);
+        showMenu(menu.data[0].questions, channel, member);
     });
 }
+
+function showQuestion(questons, channel, member, i) {
+    statement = parseStatement(questions[0].q.statement, member);
+    channel.send(statement).then(msg => {
+        addReactions(member, msg, questions[0].q.reactions);
+    });
+}
+
 //TODO: volver recursivo
 function showMenu(menu, channel, member) {
     questions = menu.data[0].questions;
@@ -72,7 +80,29 @@ function addReactions(member, msg, reactions, i) {
         msg.react(member.guild.emojis.find('name', emojiName)).then(reaction =>{
             addReactions(member, msg, reactions, i+1);
         });
+    } else {
+        //identifyReaction(member, msg);
     }
+}
+
+//TODO: generalizar para cualquier reaccion
+function identifyReaction(member, msg){
+    console.log("Waiting for reactions");
+    const filter =(reaction) => reaction.emoji.name === "yes" || reaction.emoji.name === "no";
+    const collector = msg.createReactionCollector(filter, { time: 30000 });
+
+    collector.on('collect', reaction => {
+        reaction.fetchUsers().then(users => {
+            var user = users.find('id', member.id);
+            if(user != null){
+                console.log(user.username + ' reacted with emoji ' + reaction.emoji.name);
+                collector.stop();
+
+                msg.delete();
+                asignaRol(member, reaction.emoji.name);
+            }
+        });
+    });
 }
 
 
