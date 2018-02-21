@@ -88,6 +88,7 @@ function addReactions(member, msg, reactions, ri) {
     if (ri < reactions.length) {
         console.log("agrega reaccion");
         var emojiName = reactions[ri].opt.emoji;
+        console.log(member.guild.emojis.find('name', emojiName));
         msg.react(member.guild.emojis.find('name', emojiName)).then(reaction =>{
             addReactions(member, msg, reactions, ri+1);
         });
