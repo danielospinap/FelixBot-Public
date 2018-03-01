@@ -19,7 +19,7 @@ function startMenu(menuName, channel, member) {
 function showQuestion(channel, member) {
     if (qi < questions.length) {
         statement = parseStatement(questions[qi].q.statement, member);
-        statement = statement + member.guild.roles.find('name', 'edita roles');
+        statement = statement;
         console.log("final: " + statement);
         channel.send(statement).then(msg => {
             addReactions(member, msg, questions[qi].q.reactions, 0);
@@ -79,13 +79,11 @@ function parseEmoji(text, member) {
             emoji = ":" + textEmoji + ":";
         }
 
-        console.log(parsedText);
         parsedText = parsedText + emoji + parts[i];
-        console.log(parsedText);
 
         text = text.substring(f+s+1);
     }
-    parsedText = parsedText + " ";
+
     return parsedText;
 }
 
