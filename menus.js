@@ -82,10 +82,10 @@ function parseEmoji(text, member) {
         console.log(parsedText);
         parsedText = parsedText + emoji + parts[i];
         console.log(parsedText);
-        
+
         text = text.substring(f+s+1);
     }
-
+    parsedText = parsedText + " ";
     return parsedText;
 }
 
