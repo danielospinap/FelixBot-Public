@@ -20,7 +20,7 @@ function showQuestion(channel, member) {
     if (qi < questions.length) {
         statement = parseStatement(questions[qi].q.statement, member);
         statement = statement + member.guild.roles.find('name', 'edita roles');
-        console.log(statement);
+        console.log("final: " + statement);
         channel.send(statement).then(msg => {
             addReactions(member, msg, questions[qi].q.reactions, 0);
         });
@@ -65,7 +65,7 @@ function parseEmoji(text, member) {
     var parsedText = parts[0];
     console.log(parts);
 
-    for (var i = 1; i < parts.length && i > 0; i++) {
+    for (var i = 1; i < parts.length-1 && i > 0; i++) {
         console.log(text);
         var s = text.search(/:\w+:/);
         var f = text.substring(s+1).search(":");
