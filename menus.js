@@ -65,10 +65,10 @@ function parseEmoji(text, member) {
     var emojis = member.guild.emojis;
     var parts = text.split(/:\w+:/);
     var parsedText = parts[0];
-    console.log(parts);
+    //console.log(parts);
 
     for (var i = 1; i < parts.length && i > 0; i++) {
-        console.log(text);
+        //console.log(text);
         var s = text.search(/:\w+:/);
         var f = text.substring(s+1).search(":");
         var textEmoji = text.substring(s+1, f+s+1);
@@ -79,12 +79,13 @@ function parseEmoji(text, member) {
             emoji = ":" + textEmoji + ":";
         }
 
+        console.log(parsedText);
         parsedText = parsedText + emoji + parts[i];
-
+        console.log(parsedText);
+        
         text = text.substring(f+s+1);
     }
 
-    console.log(parsedText);
     return parsedText;
 }
 
