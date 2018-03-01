@@ -19,7 +19,6 @@ function startMenu(menuName, channel, member) {
 function showQuestion(channel, member) {
     if (qi < questions.length) {
         statement = parseStatement(questions[qi].q.statement, member);
-        statement = statement;
         console.log("final: " + statement);
         channel.send(statement).then(msg => {
             addReactions(member, msg, questions[qi].q.reactions, 0);
@@ -45,6 +44,8 @@ function parseStatement(text, member) {
     console.log("member parsed: " + statement);
     
     statement = parseEmoji(statement, member);
+    console.log("emoji parsed: "+ statement);
+    
     return statement;
 }
 
@@ -79,11 +80,13 @@ function parseEmoji(text, member) {
             emoji = ":" + textEmoji + ":";
         }
 
+        console.log(parsedText);
         parsedText = parsedText + emoji + parts[i];
+        console.log(parsedText);
 
         text = text.substring(f+s+1);
     }
-
+    parsedText = parsedText + " ";
     return parsedText;
 }
 
