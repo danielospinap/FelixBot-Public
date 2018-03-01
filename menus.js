@@ -60,12 +60,14 @@ function parseMember(text, member) {
 }
 
 function parseEmoji(text, member) {
+    console.log("va a parsear emojis");
+    
     var emojis = member.guild.emojis;
     var parts = text.split(/:\w+:/);
     var parsedText = parts[0];
     console.log(parts);
 
-    for (var i = 1; i < parts.length-1 && i > 0; i++) {
+    for (var i = 1; i < parts.length && i > 0; i++) {
         console.log(text);
         var s = text.search(/:\w+:/);
         var f = text.substring(s+1).search(":");
