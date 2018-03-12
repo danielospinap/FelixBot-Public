@@ -42,10 +42,10 @@ function showMenu(menu, channel, member) {
 function parseStatement(text, member) {
     statement = parseMember(text, member);
     console.log("member parsed: " + statement);
-    
+
     statement = parseEmoji(statement, member);
     console.log("emoji parsed: "+ statement);
-    
+
     return statement;
 }
 
@@ -62,7 +62,7 @@ function parseMember(text, member) {
 
 function parseEmoji(text, member) {
     console.log("va a parsear emojis");
-    
+
     var emojis = member.guild.emojis;
     var parts = text.split(/:\w+:/);
     var parsedText = parts[0];
@@ -112,7 +112,7 @@ function addReactions(member, msg, reactions, ri) {
 //TODO: generalizar para cualquier reaccion
 function identifyReaction(member, msg, callback){
     console.log("Waiting for reactions");
-    const filter =(reaction) => reaction.emoji.name === "yes" || reaction.emoji.name === "no";
+    const filter =(reaction) => reaction.emoji.name === "yes" || reaction.emoji.name === "no" || 1==1;
     const collector = msg.createReactionCollector(filter, { time: 30000 });
 
     collector.on('collect', reaction => {
