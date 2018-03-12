@@ -112,7 +112,7 @@ function addReactions(member, msg, reactions, ri) {
 //TODO: generalizar para cualquier reaccion
 function identifyReaction(member, msg, callback){
     console.log("Waiting for reactions");
-    const filter =(reaction) => reaction.emoji.name === "yes" || reaction.emoji.name === "no" || 1==1;
+    const filter =(reaction) => reaction.emoji.name === "yes" || reaction.emoji.name === "no" || reaction.emoji.name=="🆗";
     const collector = msg.createReactionCollector(filter, { time: 30000 });
 
     collector.on('collect', reaction => {
@@ -128,7 +128,9 @@ function identifyReaction(member, msg, callback){
     });
 
     collector.on('end', r => {
-        msg.delete();
+        if (qi < questions.length) {
+            msg.delete();
+        }
     })
 }
 
