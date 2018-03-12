@@ -87,6 +87,14 @@ function parseEmoji(text, member) {
 }
 
 function addReactions(member, msg, reactions, ri) {
+    if(ri === 0){
+        identifyReaction(member, msg, emojiName => {
+            runAction(member, msg, reactions, emojiName);
+            qi++;
+            showQuestion(msg.channel, member);
+        });
+    }
+
     if (ri < reactions.length) {
         console.log("agrega reaccion");
         var emojiName = reactions[ri].opt.emoji;
@@ -100,12 +108,6 @@ function addReactions(member, msg, reactions, ri) {
                 addReactions(member, msg, reactions, ri+1);
             });
         }
-    } else {
-        identifyReaction(member, msg, emojiName => {
-            runAction(member, msg, reactions, emojiName);
-            qi++;
-            showQuestion(msg.channel, member);
-        });
     }
 }
 
