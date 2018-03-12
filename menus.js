@@ -128,7 +128,7 @@ function identifyReaction(member, msg, callback){
     });
 
     collector.on('end', r => {
-        if (qi < questions.length) {
+        if (qi < questions.length-1) {
             msg.delete();
         }
     })
