@@ -16,11 +16,11 @@ MongoClient.connect(url, function(err, db) {
     });
 });
 
-
+*/
 client.on('guildMemberAdd', member =>{
-    menus("inicio", member.guild.channels.find('name', 'jamon-test'), member);
+    menus("inicio", member.guild.channels.find('name', 'bienvenidos-bebes-de-luz'), member);
 });
-/**/
+/*
 client.on('message', msg => {
     //TODO Quitar if al parsar a producción:
     //var channel = msg.guild.channels.find('name', 'bienvenidos-bebes-de-luz');
