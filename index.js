@@ -1,8 +1,25 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const iniciacion = require('./iniciacion.js');
-var MongoClient = require('mongodb').MongoClient;
+//var MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
+// var MenuModel = require('./models/menu.js');
+// var Menu = MenuModel.Menu;
+// var Question = MenuModel.Question;
+// var Option = MenuModel.Option;
+var Menu = require('./models/menu')
 
+
+const menusCtrller = require('./controllers/menu.js');
+//TODO:Comentar cuando se suba
+require('dotenv').config();
+
+// mongoose instance connection url connection
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.DB_URL);
+//mongoose.connect('mongodb://localhost/prueba5')
+
+
+/*
 const url = process.env.DB_URL;
 var stringsInicio = [];
 MongoClient.connect(url, function(err, db) {
@@ -15,15 +32,27 @@ MongoClient.connect(url, function(err, db) {
     });
 });
 
-
+*/
 client.on('guildMemberAdd', member =>{
-    iniciacion(member, stringsInicio);
+    //menusCtrller("inicio", member.guild.channels.find('name', 'bienvenidos-bebes-de-luz'), member);
+    menusCtrller();
+});
+
+client.on('message', msg => {
+    menusCtrller();
 });
 /*
 client.on('message', msg => {
-    messagefunc(msg);
+    //TODO Quitar if al parsar a producción:
+    //var channel = msg.guild.channels.find('name', 'bienvenidos-bebes-de-luz');
+    var channel = msg.guild.channels.find('name', 'jamon-test');
+    if (msg.content === 'a') {
+        console.log("entra");
+
+        menus("inicio", channel, msg.member);
+    }
 });
-*/
+
 /*
 client.on('message', msg => {
     const member = msg.member;
