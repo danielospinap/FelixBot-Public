@@ -6,6 +6,10 @@ var menuSchema = new Schema({
         type: String,
         required: 'Kindly enter the name of the menu'
     },
+    channel: {
+        type: String,
+        required: 'Kindly enter the channel of the menu'
+    },
     questions: [{type: Schema.Types.ObjectId, ref: 'Question'}]
 });
 
@@ -34,5 +38,3 @@ var Question = mongoose.model('Question', questionSchema);
 var Option = mongoose.model('Option', optionSchema);
 
 module.exports = mongoose.model('Menu', menuSchema);
-//module.exports = mongoose.model('Question', questionSchema);
-//module.exports = mongoose.model('Option', optionSchema);

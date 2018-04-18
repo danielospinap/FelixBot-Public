@@ -39,7 +39,11 @@ client.on('guildMemberAdd', member =>{
 });
 
 client.on('message', msg => {
-    menusCtrller();
+    
+    if (msg.member.id === '212023192926027776' && msg.channel.id === '436212991055364096') {        
+        menusCtrller();
+        
+    }
 });
 /*
 client.on('message', msg => {
