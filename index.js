@@ -35,14 +35,13 @@ MongoClient.connect(url, function(err, db) {
 */
 client.on('guildMemberAdd', member =>{
     //menusCtrller("inicio", member.guild.channels.find('name', 'bienvenidos-bebes-de-luz'), member);
-    menusCtrller();
+    menusCtrller('guildMemberAdd', member);
 });
 
 client.on('message', msg => {
-    
-    if (msg.member.id === '212023192926027776' && msg.channel.id === '436212991055364096') {        
-        menusCtrller();
-        
+    if (msg.member.id === '212023192926027776' && msg.channel.id === '436212991055364096') {
+        menusCtrller('guildMemberAdd', msg.member);
+
     }
 });
 /*

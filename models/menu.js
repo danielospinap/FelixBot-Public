@@ -6,6 +6,10 @@ var menuSchema = new Schema({
         type: String,
         required: 'Kindly enter the name of the menu'
     },
+    trigger: {
+        type: String,
+        required: 'Kindly enter the trigger of the menu'
+    },
     channel: {
         type: String,
         required: 'Kindly enter the channel of the menu'
