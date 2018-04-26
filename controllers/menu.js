@@ -45,7 +45,7 @@ function sendQuestion(questionIndex) {
             .then(function(message) {
                 addReactions(message, questionIndex, 0);
             })
-            .catch();
+            //.catch();
     }
 }
 
@@ -73,7 +73,7 @@ function addReactions(message, questionIndex, optionIndex) {
             .then(reaction => {
                 addReactions(message, questionIndex, optionIndex+1);
             })
-            .catch(console.log);
+            //.catch(console.log);
     }
 }
 
