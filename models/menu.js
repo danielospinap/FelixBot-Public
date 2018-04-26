@@ -22,6 +22,10 @@ var questionSchema = new Schema({
         type: String,
         required: 'Kindly enter the statement of the question'
     },
+    keep: {
+        type: Boolean,
+        required: 'Kindly enter if you want keep the question in the chat'
+    },
     options: [{type: Schema.Types.ObjectId, ref: 'Option'}]
 });
 

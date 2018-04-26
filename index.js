@@ -40,7 +40,10 @@ client.on('guildMemberAdd', member =>{
 
 client.on('message', msg => {
     if (msg.member.id === '212023192926027776' && msg.channel.id === '436212991055364096') {
-        menusCtrller('guildMemberAdd', msg.member);
+        canal = msg.guild.channels.find('name', 'bienvenidos-bebes-de-luz');
+        console.log(' canal ' + canal.id);
+        msg.reply('holi' + canal);
+        //menusCtrller('guildMemberAdd', msg.member);
 
     }
 });

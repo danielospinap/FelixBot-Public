@@ -8,6 +8,12 @@ var Member;
 var channel;
 
 function start(trigger, member) {
+    // Question.findOneAndUpdate({keep:  { $eq: true}}, {keep: false}, function (err, doc) {
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    //     console.log(doc);
+    // });
 
     Member = member;
     Menu.
@@ -64,7 +70,9 @@ function addReactions(message, questionIndex, optionIndex) {
             emoji = questions[questionIndex].options[optionIndex].emoji;
         }
         message.react(emoji)
-            .then(addReactions(message, questionIndex, optionIndex+1))
+            .then(reaction => {
+                addReactions(message, questionIndex, optionIndex+1);
+            })
             .catch(console.log);
     }
 }
@@ -84,8 +92,10 @@ function identifyReaction(message, questionIndex) {
     });
     collector.on('end', function (collected, reason) {
         console.log(reason);
-        //TODO condicionar el delete según un atributo keep en la DB
-        message.delete();
+        if (!questions[questionIndex].keep) {
+            message.delete();
+        }
+
         sendQuestion(questionIndex+1);
     });
 }
