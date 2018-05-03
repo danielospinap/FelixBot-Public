@@ -79,12 +79,21 @@ function identifyReaction(message, questionIndex) {
         for (var i = 0; i < myQuestion.options.length; i++) {
             if(reaction.emoji.id === myQuestion.options[i].emoji || reaction.emoji.name === myQuestion.options[i].emoji){
                 collector.stop(`reacted with ${reaction.emoji.name}`);
-                runAction(myQuestion.options[i].action, questionIndex, i);
+                runAction(myQuestion.options[i]);
             }
         }
     });
     collector.on('end', function (collected, reason) {
         console.log(reason);
+        if (reason === 'time' && questions[questionIndex].default) {
+
+            Question.findOne({_id: questions[questionIndex].id}).
+            populate('default').
+            exec(function (err, q) {
+                runAction(q.default);
+            });
+
+        }
         if (!questions[questionIndex].keep) {
             message.delete();
         }
@@ -93,25 +102,22 @@ function identifyReaction(message, questionIndex) {
     });
 }
 
-function runAction(action, questionIndex, optionIndex) {
+function runAction(option) {
+    action = option.action;
     if (action === 'addRole') {
-        addRole(questionIndex, optionIndex);
+        addRole(option.params);
     } else if (action === 'addAndRemoveRole') {
-        addAndRemoveRole(questionIndex, optionIndex);
+        addAndRemoveRole(option.params);
     }
 }
 
-function addRole(questionIndex, optionIndex) {
-    roles = questions[questionIndex].options[optionIndex].params;
-
+function addRole(roles) {
     for (var i = 0; i < roles.length; i++) {
         Member.addRole(Member.guild.roles.get(roles[i]));
     }
 }
 
-function addAndRemoveRole(questionIndex, optionIndex) {
-    roles = questions[questionIndex].options[optionIndex].params;
-
+function addAndRemoveRole(roles) {
     Member.addRole(Member.guild.roles.get(roles[0]));
     Member.removeRole(Member.guild.roles.get(roles[1]));
 }
