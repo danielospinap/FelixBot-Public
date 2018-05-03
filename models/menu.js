@@ -26,7 +26,14 @@ var questionSchema = new Schema({
         type: Boolean,
         required: 'Kindly enter if you want keep the question in the chat'
     },
-    options: [{type: Schema.Types.ObjectId, ref: 'Option'}]
+    default: {
+        type: Schema.Types.ObjectId,
+        ref: 'Option'
+    },
+    options: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Option'
+    }]
 });
 
 var optionSchema = new Schema({
