@@ -17,14 +17,14 @@ client.on('guildMemberAdd', member =>{
     menusCtrller('guildMemberAdd', member);
 });
 
-client.on('message', msg => {
-    if(msg.isMemberMentioned(msg.guild.members.find('id', '412684316959834114'))) {
-        msg.reply("", {file: "https://i.ytimg.com/vi/ueIV4yxWTSQ/maxresdefault.jpg"});
-    }/*
-    if (msg.member.id === '212023192926027776' && msg.channel.id === '436212991055364096') {
-        menusCtrller('test', msg.member);
-    }*/
-});
+// client.on('message', msg => {
+//     if(msg.isMemberMentioned(msg.guild.members.find('id', '412684316959834114'))) {
+//         msg.reply("", {file: "https://i.ytimg.com/vi/ueIV4yxWTSQ/maxresdefault.jpg"});
+//     }/*
+//     if (msg.member.id === '212023192926027776' && msg.channel.id === '436212991055364096') {
+//         menusCtrller('test', msg.member);
+//     }*/
+// });
 
 
 //TODO Poner para que un admin pueda iniciarlo con un mensaje y con el miembro
