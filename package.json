@@ -1,0 +1,32 @@
+{
+  "name": "felix",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node ./src/index.ts",
+    "start": "nodemon ./dist/index.js",
+    "prod": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielospinap/FelixBot-Public.git"
+  },
+  "author": "jamon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielospinap/FelixBot-Public/issues"
+  },
+  "homepage": "https://github.com/danielospinap/FelixBot-Public#readme",
+  "dependencies": {
+    "@types/node": "^10.9.4",
+    "discord.js": "^11.4.2",
+    "mongodb": "^3.1.4",
+    "mongoose": "^5.2.14",
+    "typescript": "^3.0.3",
+    "nodemon": "^1.18.4"
+  },
+  "devDependencies": {
+    "dotenv": "^6.0.0"
+  }
+}
