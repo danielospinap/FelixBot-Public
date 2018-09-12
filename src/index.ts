@@ -2,7 +2,7 @@ import * as Discord from 'discord.js';
 import * as mongoose from "mongoose";
 import { config as dotenvConfig } from "dotenv";
 
-// Enviroment vars
+// Enviroment vars to dev
 dotenvConfig();
 
 // Connection to DB
